@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Customer < ApplicationRecord
-  validates_presence_of :id,
-                        :first_name,
-                        :last_name,
-                        :created_at,
-                        :updated_at
+  validates_presence_of :first_name,
+                        :last_name
+
+  has_many :invoices
 end
