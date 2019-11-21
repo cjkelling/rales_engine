@@ -55,4 +55,18 @@ describe 'Transactions Requests' do
     expect(transactions[0]['result']).to eq(transaction.result)
     expect(transactions[1]['result']).to eq('Success')
   end
+
+  it 'can return a random resource' do
+    transaction = create(:transaction, result: 'Success')
+    transaction2 = create(:transaction, result: 'Not Successful')
+    transaction3 = create(:transaction, result: 'Success')
+
+    get '/api/v1/transactions/random'
+
+    expect(response).to be_successful
+
+    result = JSON.parse(response.body)
+
+    expect(result.values[4]).to eq(transaction.result).or eq(transaction2.result).or eq(transaction3.result)
+  end
 end

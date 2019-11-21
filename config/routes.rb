@@ -47,6 +47,10 @@ Rails.application.routes.draw do
           get '/find', to: 'find#show'
           get '/find_all', to: 'find#index'
         end
+
+        controller :random do
+          get '/random', to: 'random#show'
+        end
       end
 
       resources :customers, only: %i[index show]
