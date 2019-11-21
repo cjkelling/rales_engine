@@ -20,19 +20,40 @@ describe 'Merchants Requests' do
 
     get "/api/v1/merchants/#{id}"
 
+    expect(response).to be_successful
+
     merchant = JSON.parse(response.body)
 
-    expect(response).to be_successful
     expect(merchant['id']).to eq(id)
   end
 
-  xit 'can find a single object based on search attributes' do
-    create_list(:merchant, 3)
+  it 'can find a single object based on search attributes' do
+    merchant = create(:merchant, name: 'merchant')
+    merchant2 = create(:merchant, name: 'merchant2')
+    merchant3 = create(:merchant, name: 'merchant3')
 
-    get '/api/v1/merchants/find?id=3'
+    get '/api/v1/merchants/find?name=merchant3'
 
     expect(response).to be_successful
-    expect(merchants.count).to eq(1)
-    expect(merchant['id']).to eq(3)
+
+    merchant = JSON.parse(response.body)
+
+    expect(merchant['name']).to eq(merchant3.name)
+  end
+
+  it 'can find all matches based on a search attribute' do
+    merchant = create(:merchant)
+    merchant2 = create(:merchant)
+    merchant3 = create(:merchant, name: 'merchant3')
+
+    get '/api/v1/merchants/find_all?name=Banana Stand'
+
+    expect(response).to be_successful
+
+    merchants = JSON.parse(response.body)
+
+    expect(merchants.count).to eq(2)
+    expect(merchants[0]['name']).to eq(merchant.name)
+    expect(merchants[1]['name']).to eq(merchant2.name)
   end
 end

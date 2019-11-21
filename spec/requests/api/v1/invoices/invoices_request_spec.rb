@@ -25,4 +25,34 @@ describe 'Invoices Requests' do
     expect(response).to be_successful
     expect(invoice['id']).to eq(id)
   end
+
+  it 'can find a single object based on search attributes' do
+    invoice = create(:invoice)
+    invoice2 = create(:invoice)
+    invoice3 = create(:invoice, status: 'not shipped')
+
+    get '/api/v1/invoices/find?status=not shipped'
+
+    expect(response).to be_successful
+
+    invoice = JSON.parse(response.body)
+
+    expect(invoice['status']).to eq(invoice3.status)
+  end
+
+  it 'can find all matches based on a search attribute' do
+    invoice = create(:invoice)
+    invoice2 = create(:invoice)
+    invoice3 = create(:invoice, status: 'not shipped')
+
+    get '/api/v1/invoices/find_all?status=Shipped'
+
+    expect(response).to be_successful
+
+    invoices = JSON.parse(response.body)
+
+    expect(invoices.count).to eq(2)
+    expect(invoices[0]['status']).to eq(invoice.status)
+    expect(invoices[1]['status']).to eq('Shipped')
+  end
 end
