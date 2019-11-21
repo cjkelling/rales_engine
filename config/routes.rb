@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       namespace :merchants do
         controller :find do
           get '/find', to: 'find#show'
+          get '/find_all', to: 'find#index'
         end
       end
       resources :customers, only: %i[index show]
