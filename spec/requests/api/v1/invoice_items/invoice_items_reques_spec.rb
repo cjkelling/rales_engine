@@ -25,4 +25,34 @@ describe 'Invoice Items Requests' do
     expect(response).to be_successful
     expect(invoice_item['id']).to eq(id)
   end
+
+  it 'can find a single object based on search attributes' do
+    invoice_item = create(:invoice_item)
+    invoice_item2 = create(:invoice_item)
+    invoice_item3 = create(:invoice_item, quantity: 2)
+
+    get '/api/v1/invoice_items/find?quantity=2'
+
+    expect(response).to be_successful
+
+    invoice_item = JSON.parse(response.body)
+
+    expect(invoice_item['quantity']).to eq(invoice_item3.quantity)
+  end
+
+  it 'can find all matches based on a search attribute' do
+    invoice_item = create(:invoice_item)
+    invoice_item2 = create(:invoice_item)
+    invoice_item3 = create(:invoice_item, quantity: 2)
+
+    get '/api/v1/invoice_items/find_all?quantity=5'
+
+    expect(response).to be_successful
+
+    invoice_items = JSON.parse(response.body)
+
+    expect(invoice_items.count).to eq(2)
+    expect(invoice_items[0]['quantity']).to eq(invoice_item.quantity)
+    expect(invoice_items[1]['quantity']).to eq(5)
+  end
 end
