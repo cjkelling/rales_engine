@@ -56,4 +56,18 @@ describe 'Merchants Requests' do
     expect(merchants[0]['name']).to eq(merchant.name)
     expect(merchants[1]['name']).to eq(merchant2.name)
   end
+
+  it 'can return a random resource' do
+    merchant = create(:merchant, name: 'merchant')
+    merchant2 = create(:merchant, name: 'merchant2')
+    merchant3 = create(:merchant, name: 'merchant3')
+
+    get '/api/v1/merchants/random'
+
+    expect(response).to be_successful
+
+    result = JSON.parse(response.body)
+
+    expect(result.values[1]).to eq(merchant.name).or eq(merchant2.name).or eq(merchant3.name)
+  end
 end
