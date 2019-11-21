@@ -17,6 +17,13 @@ Rails.application.routes.draw do
         end
       end
 
+      namespace :invoices do
+        controller :find do
+          get '/find', to: 'find#show'
+          get '/find_all', to: 'find#index'
+        end
+      end
+
       resources :customers, only: %i[index show]
       resources :invoice_items, only: %i[index show]
       resources :invoices, only: %i[index show]
