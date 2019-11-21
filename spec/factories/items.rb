@@ -2,8 +2,9 @@
 
 FactoryBot.define do
   factory :item do
+    merchant
     name { 'Banana' }
-    description { 'Stand' }
-    unit_price { 200 }
+    description { 'Food' }
+    unit_price { 2 }
   end
 end
