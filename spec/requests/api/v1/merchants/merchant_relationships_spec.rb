@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'Merchants Relationship Requests' do
-  it ' returns a collection of items associated with that merchant' do
+  it 'returns a collection of items associated with that merchant' do
     merchant = create(:merchant)
     merchant.items.create!(name: 'Banana', description: 'Food', unit_price: 1)
     merchant.items.create!(name: 'Chocolate', description: 'Topping', unit_price: 2)
