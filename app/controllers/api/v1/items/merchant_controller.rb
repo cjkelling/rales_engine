@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Items::MerchantController < ApplicationController
-  def index
+  def show
     render json: Item.find(params[:id]).merchant
   end
 end

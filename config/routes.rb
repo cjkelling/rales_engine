@@ -46,8 +46,12 @@ Rails.application.routes.draw do
           get '/random', to: 'random#show'
         end
 
+        controller :invoice_items do
+          get '/:id/invoice_items', to: 'invoice_items#index'
+        end
+
         controller :merchant do
-          get '/:id/merchant', to: 'merchant#index'
+          get '/:id/merchant', to: 'merchant#show'
         end
       end
 
@@ -81,7 +85,7 @@ Rails.application.routes.draw do
         end
 
         controller :invoice do
-          get '/:id/invoice', to: 'invoice#index'
+          get '/:id/invoice', to: 'invoice#show'
         end
       end
 
