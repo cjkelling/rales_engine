@@ -75,6 +75,10 @@ Rails.application.routes.draw do
         controller :random do
           get '/random', to: 'random#show'
         end
+
+        controller :invoice do
+          get '/:id/invoice', to: 'invoice#index'
+        end
       end
 
       resources :customers, only: %i[index show]
