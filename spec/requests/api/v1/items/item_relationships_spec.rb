@@ -4,18 +4,18 @@ require 'rails_helper'
 
 describe 'Items Relationship Requests' do
   it 'returns a collection of associated invoice items' do
-    merchant = create(:merchant)
-    merchant.items.create!(name: 'Banana', description: 'Food', unit_price: 1)
-    merchant.items.create!(name: 'Chocolate', description: 'Topping', unit_price: 2)
-    merchant.items.create!(name: 'Stick', description: 'Holder', unit_price: 0.50)
+    item = create(:item)
+    invoice = create(:invoice)
+    InvoiceItem.create!(quantity: 2, unit_price: 3, item_id: item.id, invoice_id: invoice.id)
+    InvoiceItem.create!(quantity: 3, unit_price: 4, item_id: item.id, invoice_id: invoice.id)
 
-    get "/api/v1/merchants/#{merchant.id}/items"
+    get "/api/v1/items/#{item.id}/invoice_items"
 
     expect(response).to be_successful
 
-    items = JSON.parse(response.body)
+    result = JSON.parse(response.body)
 
-    expect(items.count).to eq(3)
+    expect(result.count).to eq(2)
   end
 
   it 'returns the associated merchant' do
