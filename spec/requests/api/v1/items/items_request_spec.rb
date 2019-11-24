@@ -55,4 +55,18 @@ describe 'Items Requests' do
     expect(items[0]['name']).to eq(item.name)
     expect(items[1]['name']).to eq('Banana')
   end
+
+  it 'can return a random resource' do
+    item = create(:item, name: 'Item')
+    item2 = create(:item, name: 'Item2')
+    item3 = create(:item, name: 'Item3')
+
+    get '/api/v1/items/random'
+
+    expect(response).to be_successful
+
+    name = JSON.parse(response.body)
+
+    expect(name.values[1]).to eq(item.name).or eq(item2.name).or eq(item3.name)
+  end
 end

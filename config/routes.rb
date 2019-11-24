@@ -8,12 +8,20 @@ Rails.application.routes.draw do
           get '/find', to: 'find#show'
           get '/find_all', to: 'find#index'
         end
+
+        controller :random do
+          get '/random', to: 'random#show'
+        end
       end
 
       namespace :invoice_items do
         controller :find do
           get '/find', to: 'find#show'
           get '/find_all', to: 'find#index'
+        end
+
+        controller :random do
+          get '/random', to: 'random#show'
         end
       end
 
@@ -22,12 +30,20 @@ Rails.application.routes.draw do
           get '/find', to: 'find#show'
           get '/find_all', to: 'find#index'
         end
+
+        controller :random do
+          get '/random', to: 'random#show'
+        end
       end
 
       namespace :items do
         controller :find do
           get '/find', to: 'find#show'
           get '/find_all', to: 'find#index'
+        end
+
+        controller :random do
+          get '/random', to: 'random#show'
         end
       end
 
@@ -36,12 +52,20 @@ Rails.application.routes.draw do
           get '/find', to: 'find#show'
           get '/find_all', to: 'find#index'
         end
+
+        controller :random do
+          get '/random', to: 'random#show'
+        end
       end
 
       namespace :transactions do
         controller :find do
           get '/find', to: 'find#show'
           get '/find_all', to: 'find#index'
+        end
+
+        controller :random do
+          get '/random', to: 'random#show'
         end
       end
 
