@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Merchants Requests' do
+describe 'Merchant Records Requests' do
   it 'sends an index list of all merchants' do
     create_list(:merchant, 3)
 

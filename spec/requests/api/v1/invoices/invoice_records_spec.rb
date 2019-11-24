@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Invoices Requests' do
+describe 'Invoice Records Requests' do
   it 'sends an index list of all invoices' do
     create_list(:invoice, 3)
 
