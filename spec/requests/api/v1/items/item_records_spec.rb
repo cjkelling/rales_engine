@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Items Requests' do
+describe 'Item Records Requests' do
   it 'sends an index list of all items' do
     create_list(:item, 3)
 

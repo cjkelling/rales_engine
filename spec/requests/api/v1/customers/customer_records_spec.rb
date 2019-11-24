@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Customers Requests' do
+describe 'Customer Records Requests' do
   it 'sends an index list of all customers' do
     create_list(:customer, 3)
 

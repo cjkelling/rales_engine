@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Transactions Requests' do
+describe 'Transaction Records Requests' do
   it 'sends an index list of all transactions' do
     create_list(:transaction, 3)
 
