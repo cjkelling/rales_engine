@@ -55,4 +55,18 @@ describe 'Invoice Items Requests' do
     expect(invoice_items[0]['quantity']).to eq(invoice_item.quantity)
     expect(invoice_items[1]['quantity']).to eq(5)
   end
+
+  it 'can return a random resource' do
+    invoice_item = create(:invoice_item, quantity: 1)
+    invoice_item2 = create(:invoice_item, quantity: 3)
+    invoice_item3 = create(:invoice_item, quantity: 5)
+
+    get '/api/v1/invoice_items/random'
+
+    expect(response).to be_successful
+
+    quantity = JSON.parse(response.body)
+
+    expect(quantity.values[3]).to eq(invoice_item.quantity).or eq(invoice_item2.quantity).or eq(invoice_item3.quantity)
+  end
 end

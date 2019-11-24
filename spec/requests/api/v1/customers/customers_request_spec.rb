@@ -55,4 +55,18 @@ describe 'Customers Requests' do
     expect(customers[0]['last_name']).to eq(customer.last_name)
     expect(customers[1]['last_name']).to eq('Doe')
   end
+
+  it 'can return a random resource' do
+    customer = create(:customer, first_name: 'Greg')
+    customer2 = create(:customer, first_name: 'Michael')
+    customer3 = create(:customer, first_name: 'John')
+
+    get '/api/v1/customers/random'
+
+    expect(response).to be_successful
+
+    first_name = JSON.parse(response.body)
+
+    expect(first_name.values[1]).to eq(customer.first_name).or eq(customer2.first_name).or eq(customer3.first_name)
+  end
 end

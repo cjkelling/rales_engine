@@ -55,4 +55,18 @@ describe 'Invoices Requests' do
     expect(invoices[0]['status']).to eq(invoice.status)
     expect(invoices[1]['status']).to eq('Shipped')
   end
+
+  it 'can return a random resource' do
+    invoice = create(:invoice, status: 'Shipped')
+    invoice2 = create(:invoice, status: 'Not Shipped')
+    invoice3 = create(:invoice, status: 'Shipped')
+
+    get '/api/v1/invoices/random'
+
+    expect(response).to be_successful
+
+    status = JSON.parse(response.body)
+
+    expect(status.values[3]).to eq(invoice.status).or eq(invoice2.status).or eq(invoice3.status)
+  end
 end
