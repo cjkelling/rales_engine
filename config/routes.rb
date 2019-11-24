@@ -45,6 +45,10 @@ Rails.application.routes.draw do
         controller :random do
           get '/random', to: 'random#show'
         end
+
+        controller :merchant do
+          get '/:id/merchant', to: 'merchant#index'
+        end
       end
 
       namespace :merchants do
