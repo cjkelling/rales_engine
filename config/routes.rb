@@ -108,6 +108,10 @@ Rails.application.routes.draw do
         controller :invoices do
           get '/:id/invoices', to: 'invoices#index'
         end
+
+        controller :most_revenue do
+          get 'most_revenue', to: 'most_revenue#index'
+        end
       end
 
       namespace :transactions do
