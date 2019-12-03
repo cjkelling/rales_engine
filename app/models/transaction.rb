@@ -5,4 +5,7 @@ class Transaction < ApplicationRecord
                         :result
 
   belongs_to :invoice
+
+  scope :success, -> { where(result: 'success') }
+  scope :failed, -> { where(result: 'failed') }
 end
