@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20_191_119_220_519) do
   create_table 'customers', force: :cascade do |t|
     t.string 'first_name'
     t.string 'last_name'
-    t.datetime 'created_at'
+    t.date 'created_at'
     t.datetime 'updated_at'
   end
 
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20_191_119_220_519) do
     t.bigint 'item_id'
     t.bigint 'invoice_id'
     t.integer 'quantity'
-    t.float 'unit_price'
-    t.datetime 'created_at'
+    t.decimal 'unit_price', precision: 10, scale: 2
+    t.date 'created_at'
     t.datetime 'updated_at'
     t.index ['invoice_id'], name: 'index_invoice_items_on_invoice_id'
     t.index ['item_id'], name: 'index_invoice_items_on_item_id'
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20_191_119_220_519) do
     t.bigint 'customer_id'
     t.bigint 'merchant_id'
     t.string 'status'
-    t.datetime 'created_at'
+    t.date 'created_at'
     t.datetime 'updated_at'
     t.index ['customer_id'], name: 'index_invoices_on_customer_id'
     t.index ['merchant_id'], name: 'index_invoices_on_merchant_id'
@@ -49,14 +49,14 @@ ActiveRecord::Schema.define(version: 20_191_119_220_519) do
     t.string 'description'
     t.float 'unit_price'
     t.bigint 'merchant_id'
-    t.datetime 'created_at'
+    t.date 'created_at'
     t.datetime 'updated_at'
     t.index ['merchant_id'], name: 'index_items_on_merchant_id'
   end
 
   create_table 'merchants', force: :cascade do |t|
     t.string 'name'
-    t.datetime 'created_at'
+    t.date 'created_at'
     t.datetime 'updated_at'
   end
 
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20_191_119_220_519) do
     t.bigint 'credit_card_number'
     t.string 'credit_card_expiration_date', default: ''
     t.string 'result'
-    t.datetime 'created_at'
+    t.date 'created_at'
     t.datetime 'updated_at'
     t.index ['invoice_id'], name: 'index_transactions_on_invoice_id'
   end

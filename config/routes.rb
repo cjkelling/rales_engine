@@ -4,129 +4,56 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :customers do
-        controller :find do
-          get '/find', to: 'find#show'
-          get '/find_all', to: 'find#index'
-        end
-
-        controller :random do
-          get '/random', to: 'random#show'
-        end
-
-        controller :invoices do
-          get '/:id/invoices', to: 'invoices#index'
-        end
-
-        controller :transactions do
-          get '/:id/transactions', to: 'transactions#index'
-        end
+        get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
+        get '/random', to: 'random#show'
+        get '/:id/invoices', to: 'invoices#index'
+        get '/:id/transactions', to: 'transactions#index'
       end
 
       namespace :invoice_items do
-        controller :find do
-          get '/find', to: 'find#show'
-          get '/find_all', to: 'find#index'
-        end
-
-        controller :random do
-          get '/random', to: 'random#show'
-        end
-
-        controller :invoice do
-          get '/:id/invoice', to: 'invoice#show'
-        end
-
-        controller :item do
-          get '/:id/item', to: 'item#show'
-        end
+        get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
+        get '/random', to: 'random#show'
+        get '/:id/invoice', to: 'invoice#show'
+        get '/:id/item', to: 'item#show'
       end
 
       namespace :invoices do
-        controller :find do
-          get '/find', to: 'find#show'
-          get '/find_all', to: 'find#index'
-        end
-
-        controller :random do
-          get '/random', to: 'random#show'
-        end
-
-        controller :transactions do
-          get '/:id/transactions', to: 'transactions#show'
-        end
-
-        controller :invoice_items do
-          get '/:id/invoice_items', to: 'invoice_items#show'
-        end
-
-        controller :items do
-          get '/:id/items', to: 'items#show'
-        end
-
-        controller :customer do
-          get '/:id/customer', to: 'customer#show'
-        end
-
-        controller :merchant do
-          get '/:id/merchant', to: 'merchant#show'
-        end
+        get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
+        get '/random', to: 'random#show'
+        get '/:id/transactions', to: 'transactions#show'
+        get '/:id/invoice_items', to: 'invoice_items#show'
+        get '/:id/items', to: 'items#show'
+        get '/:id/customer', to: 'customer#show'
+        get '/:id/merchant', to: 'merchant#show'
       end
 
       namespace :items do
-        controller :find do
-          get '/find', to: 'find#show'
-          get '/find_all', to: 'find#index'
-        end
-
-        controller :random do
-          get '/random', to: 'random#show'
-        end
-
-        controller :invoice_items do
-          get '/:id/invoice_items', to: 'invoice_items#index'
-        end
-
-        controller :merchant do
-          get '/:id/merchant', to: 'merchant#show'
-        end
+        get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
+        get '/random', to: 'random#show'
+        get '/:id/invoice_items', to: 'invoice_items#index'
+        get '/:id/merchant', to: 'merchant#show'
       end
 
       namespace :merchants do
-        controller :find do
-          get '/find', to: 'find#show'
-          get '/find_all', to: 'find#index'
-        end
-
-        controller :random do
-          get '/random', to: 'random#show'
-        end
-
-        controller :items do
-          get '/:id/items', to: 'items#index'
-        end
-
-        controller :invoices do
-          get '/:id/invoices', to: 'invoices#index'
-        end
-
-        controller :most_revenue do
-          get 'most_revenue', to: 'most_revenue#index'
-        end
+        get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
+        get '/random', to: 'random#show'
+        get '/:id/items', to: 'items#index'
+        get '/:id/invoices', to: 'invoices#index'
+        get '/most_revenue', to: 'most_revenue#index'
+        get '/revenue', to: 'revenue#show'
+        get '/:id/favorite_customer', to: 'favorite_customer#show'
       end
 
       namespace :transactions do
-        controller :find do
-          get '/find', to: 'find#show'
-          get '/find_all', to: 'find#index'
-        end
-
-        controller :random do
-          get '/random', to: 'random#show'
-        end
-
-        controller :invoice do
-          get '/:id/invoice', to: 'invoice#show'
-        end
+        get '/find', to: 'find#show'
+        get '/find_all', to: 'find#index'
+        get '/random', to: 'random#show'
+        get '/:id/invoice', to: 'invoice#show'
       end
 
       resources :customers, only: %i[index show]
